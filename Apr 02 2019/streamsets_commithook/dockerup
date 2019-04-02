@@ -1,0 +1,1 @@
+make && docker run --name streamsets_commithook -h streamsets_commithook.docker.local -p 8000:8000 streamsets_commithook

@@ -1,0 +1,39 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'registry.access.redhat.com/rhscl/python-36-rhel7' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 'registry.access.redhat.com/rhscl/python-36-rhel7' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+#at least the image from redhat dumps you in  /opt/app-root/src and running out of a src directory is just bad practice
+appHome="../app/streamsets_commithook"
+mkdir -p "$appHome"
+
+# Restore artifacts from the previous build (if they exist).
+#
+#if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+#  echo "---> Restoring build artifacts..."
+#  mv /tmp/artifacts/. ./
+#fi
+
+echo "---> Source contents..."
+ls -l /tmp/src
+
+echo "---> Installing application source..."
+#cp -Rf /tmp/src/. ./
+cp -Rf /tmp/src/* "$appHome/"
+
+echo "---> Building application from source..."
+# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
+#pip install -r "$appHome/requirements.txt"
+pip install -r "$appHome/requirements.txt"
+
+
+

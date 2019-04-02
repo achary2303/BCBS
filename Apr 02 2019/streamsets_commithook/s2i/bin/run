@@ -1,0 +1,19 @@
+#!/bin/bash -e
+#
+# S2I run script for the 'registry.access.redhat.com/rhscl/python-36-rhel7' image.
+# The run script executes the server that runs your application.
+#
+# For more information see the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+#exec asdf -p 8080
+
+appHome="../app/streamsets_commithook"
+
+echo "Starting Gunicorn..."
+cd "$appHome/"
+#exec /bin/bash -c "pwd ; ls -l"
+exec gunicorn streamsets_commithook.wsgi:application --bind 0.0.0.0:8000 --workers 4
+
+
