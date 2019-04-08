@@ -6,13 +6,13 @@ g = Github('tkeerthi30@gmail.com', 'Candy@3027')
 org = g.get_organization('BCBS')
 
 #create the new repository
-repo = org.create_repo("Pygit2", description = "New Project Initiation" )
+repo = org.create_repo("tk111", description = "New Project Initiation" )
 
 #create some new files in the repo
-repo.create_file("/README.md", "init commit", readmeText)
+repo.create_file("README.md", "init commit", 'General Info.')
 
 #Clone the newly created repo
-repoClone = pygit2.clone_repository(repo.git_url, '/home/ec2-user/Pygit')
+repoClone = pygit2.clone_repository(repo.git_url, '/home/ubuntu/Pygit/Test-repo')
 
 #put the files in the repository here
 
@@ -37,11 +37,15 @@ remote.push(['refs/heads/master'],callbacks=callbacks)
 
 
 curl https://bootstrap.pypa.io/get-pip.py -o 
-get-pip.py
-python get-pip.py
-git config --list --show-origin
+get-pip.py
+
+python get-pip.py
+
+git config --list --show-origin
+
 git config --global user.name "keerthi"
-git config --global user.email xxx@example.com
+
+git config --global user.email xxx@example.com
 pip install xxx --disable-pip-version-check
 sudo yum list | grep python3
 
